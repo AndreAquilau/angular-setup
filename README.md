@@ -3,7 +3,7 @@
 ng new <name:project>
 ```
 
-#### Migrating and configuring Eslint with Angular 11
+#### Migrating and configuring Eslint with Angular 11.*
 Primary install convert-tslint-to-eslint.
 > With ng install @angular-eslint/schematics
 ```bash
