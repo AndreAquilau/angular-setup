@@ -1,27 +1,105 @@
-# AngularCod3r
+## Create Project In Angular
+```bash
+ng new <name:project>
+```
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+#### Migrating and configuring Eslint with Angular 11
+Primary install convert-tslint-to-eslint.
+> With ng install @angular-eslint/schematics
+```bash
+// Execute in Project 
 
-## Development server
+ng add @angular-eslint/schematics
+```
+> Execute Convertion For Eslint
+```bash
+// Execute in Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ng g @angular-eslint/schematics:convertion-tslint-to-eslint <name:project>
 
-## Code scaffolding
+// exemple
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+$ ng g @angular-eslint/schematics:convert-tslint-to-eslint angular-cod3r
+CREATE .eslintrc.json (1084 bytes)
+UPDATE angular.json (3470 bytes)
+```
+> Create file .eslintignore
+```bash
+touch .eslintignore
+```
+```.eslintignore
+node_modules
+dist
+e2e
+build
+/*.js
+```
+#### Action On Save Execute Eslint in VSCode
+> Create folder .vscode and settings.json
+```.json
+// .vscode/settings.json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
+#### Configuration Prettier Format with Eslint
+```bash
+yarn add prettier eslint-plugin-prettier eslint-config-prettier
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### Create File .prettierrc
+```.prettierrc
+{
+  "tabWidth": 2,
+  "useTabs": true,
+  "printWidth": 80,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "overrides": [
+      {
+          "files": "*.component.html",
+          "options": {
+              "parser": "angular"
+          }
+      },
+      {
+          "files": "*.html",
+          "options": {
+              "parser": "html"
+          }
+      }
+  ]
+}
+```
+> create .prettierignore
+```.prettierignore
+node_modules
+dist
+e2e
+build
+/*.js
+```
+#### Configuration extensions, plugin, rule in .eslintrc.json
+```.json
++++
+ "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "prettier/standard",
+        "prettier/@typescript-eslint",
+        "prettier/@typescript-eslint",
+      ],
+  +++
+  "rules": {
+    "prettier/prettier": "error"
+  }
+```
+##### References Configuration
+[References Eslint + Prettier + Angular]()
